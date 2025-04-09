@@ -1,6 +1,20 @@
-import os
-import time
+import sys
+import datetime
+import functools
 
+# Save the original print function
+original_print = print
+
+def print_with_timestamp(*args, **kwargs):
+    """Prepend the current timestamp to each print call."""
+    now = datetime.datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+    # Insert the timestamp as the first argument
+    original_print(now, *args, **kwargs)
+
+# Override the built-in print with our new function.
+# This change applies to all subsequent print calls.
+print = print_with_timestamp
+    
 ###############################
 # Functions for HOSPITAL folder #
 ###############################
